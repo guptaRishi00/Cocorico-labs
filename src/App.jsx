@@ -1,29 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
-  Send,
   Menu,
   X,
   Rocket,
   Code2,
-  ShieldCheck,
   Gem,
   Globe2,
-  Zap,
-  MousePointer2,
-  ChevronDown,
   CheckCircle2,
-  Euro,
-  LayoutGrid,
-  Users,
+  Plus,
+  Minus,
+  FileText,
+  BadgeCheck,
+  TrendingUp,
 } from "lucide-react";
 
-/* 🏆 COCORICOLABS - AWWWARDS EDITION (MOBILE OPTIMIZED)
+/* 🏆 COCORICOLABS - CORRECTION & CONTENU MIS À JOUR
   --------------------------------------------------
-  Concept: Kinetic Typography & French Brutalism
-  Palette: International Klein Blue (#002FA7), Marianne Red (#EF4135), Paper White.
-  Features: Custom Router, Interactive Calculator, Detailed Portfolio.
+  Correctifs : Structure du Footer, Fermeture des balises.
+  Contenu : Nouveaux textes marketing, FAQ complète.
 */
 
 // --- HOOKS & UTILS ---
@@ -110,7 +106,6 @@ const Marquee = ({ text, reverse = false }) => (
 
 const Footer = ({ setPage }) => (
   <footer className="bg-slate-900 text-white pt-20 md:pt-32 pb-8 md:pb-12 px-6 md:px-12 relative overflow-hidden">
-    {/* Giant Background Text */}
     <div className="absolute bottom-0 left-0 text-[20vw] font-bold text-white/[0.03] leading-none pointer-events-none select-none">
       COCORICO
     </div>
@@ -122,11 +117,10 @@ const Footer = ({ setPage }) => (
             Parlons-en.
           </h2>
           <p className="text-lg md:text-xl text-slate-400 max-w-md mb-8 md:mb-12">
-            Prêt à lancer votre projet ? Nous acceptons actuellement de nouveaux
-            défis pour le T4 2026.
+            Obtenez un devis détaillé pour votre projet Web3 dès aujourd’hui.
           </p>
           <a
-            href="mailto:bonjour@cocoricolabs.fr"
+            href="mailto:hello@cocoricolabs.com"
             className="text-2xl md:text-5xl font-bold hover:text-blue-500 transition-colors underline decoration-slate-700 underline-offset-8 break-all md:break-normal"
           >
             hello@cocoricolabs.com
@@ -189,6 +183,12 @@ const Footer = ({ setPage }) => (
                 >
                   Studio
                 </li>
+                <li
+                  onClick={() => setPage("faq")}
+                  className="hover:text-red-500 transition-colors"
+                >
+                  FAQ
+                </li>
               </ul>
             </div>
           </div>
@@ -199,7 +199,7 @@ const Footer = ({ setPage }) => (
         <div className="flex items-center gap-4">
           <div className="w-8 h-8 bg-gradient-to-r from-blue-600 via-white to-red-600 rounded-full"></div>
           <span className="text-sm font-bold tracking-widest">
-            COCORICOLABS © 2026
+            COCORICOLABS © 2024
           </span>
         </div>
         <div className="text-[10px] md:text-xs text-slate-500 font-mono">
@@ -229,7 +229,7 @@ const Home = ({ setPage }) => (
         >
           <div className="h-[1px] w-8 md:w-12 bg-slate-900"></div>
           <span className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-blue-700">
-            Innovation depuis 2024
+            Expertise Innovation
           </span>
         </div>
 
@@ -237,9 +237,9 @@ const Home = ({ setPage }) => (
           className="text-[13vw] leading-[0.8] font-bold tracking-tighter mb-8 md:mb-12 mix-blend-darken reveal-up"
           style={{ animationDelay: "0.2s" }}
         >
-          Haute Couture <br />
+          Spécialistes <br />
           <span className="font-serif italic font-light text-slate-800 relative z-10 pl-6 md:pl-32 block mt-2 md:mt-0">
-            NUMÉRIQUE
+            INNOVANTS
             <svg
               className="absolute -bottom-2 md:-bottom-4 left-0 md:left-24 w-[200px] md:w-[300px] h-4 md:h-6 z-[-1] opacity-50"
               viewBox="0 0 300 10"
@@ -267,12 +267,9 @@ const Home = ({ setPage }) => (
         >
           <div className="md:col-span-5">
             <p className="text-lg md:text-2xl font-light leading-relaxed text-slate-600 mb-6 md:mb-8">
-              Nous sommes les architectes de votre souveraineté numérique.
-              <strong className="text-slate-900 font-medium">
-                {" "}
-                MVPs, Web3 et Plateformes
-              </strong>{" "}
-              conçus en France, financés par la France.
+              Nous développons des <strong>MVPs et solutions Web3</strong> pour
+              des entreprises en phase de R&D, avec une documentation technique
+              conforme aux standards français.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 sm:items-center">
               <button
@@ -285,9 +282,6 @@ const Home = ({ setPage }) => (
                   className="group-hover:translate-x-2 transition-transform"
                 />
               </button>
-              <div className="text-xs font-mono text-slate-400">
-                ÉLIGIBLE : CII • CIR • BPI
-              </div>
             </div>
           </div>
 
@@ -304,7 +298,7 @@ const Home = ({ setPage }) => (
                   <div className="mt-auto">
                     <h3 className="text-3xl md:text-4xl font-bold mb-2">40%</h3>
                     <p className="text-xs md:text-sm text-slate-500 font-mono border-t border-slate-100 pt-2">
-                      COUVERTURE MAXIMALE
+                      MAXIMISEZ VOTRE RUNWAY
                     </p>
                   </div>
                   <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-white to-red-600"></div>
@@ -319,84 +313,7 @@ const Home = ({ setPage }) => (
       </div>
     </section>
 
-    <Marquee text="DESIGN • DÉVELOPPEMENT • INNOVATION" />
-
-    {/* Preview of Work */}
-    <section className="py-20 md:py-32 px-6 md:px-12 bg-white relative z-10">
-      <div className="max-w-[1600px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-24">
-          <h2 className="text-4xl md:text-7xl font-bold max-w-2xl leading-tight">
-            Nous bâtissons des écosystèmes{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-              pérennes
-            </span>
-            .
-          </h2>
-          <button
-            onClick={() => setPage("work")}
-            className="hidden md:block text-right group"
-          >
-            <span className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
-              Catalogue de Services
-            </span>
-            <span className="block text-3xl font-serif italic group-hover:text-blue-600 transition-colors">
-              Voir les Projets &rarr;
-            </span>
-          </button>
-        </div>
-
-        <div className="space-y-0">
-          {[
-            {
-              num: "01",
-              title: "MVP & Proto",
-              desc: "Cycles de déploiement rapides avec React & Next.js.",
-              icon: Rocket,
-            },
-            {
-              num: "02",
-              title: "Infra Web3",
-              desc: "Smart contracts & dApps.",
-              icon: Gem,
-            },
-            {
-              num: "03",
-              title: "Plateformes SaaS",
-              desc: "Outils d'entreprise haute performance.",
-              icon: Code2,
-            },
-          ].map((service, i) => (
-            <div
-              key={i}
-              onClick={() => setPage("work")}
-              className="group relative border-t border-slate-200 py-10 md:py-16 hover:bg-slate-50 transition-colors duration-500 cursor-pointer"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start md:items-center">
-                <div className="md:col-span-2 text-lg md:text-xl font-serif italic text-slate-300 group-hover:text-blue-600">
-                  ({service.num})
-                </div>
-                <div className="md:col-span-5">
-                  <h3 className="text-2xl md:text-4xl font-bold md:group-hover:translate-x-4 transition-transform">
-                    {service.title}
-                  </h3>
-                </div>
-                <div className="md:col-span-5 text-sm md:text-base text-slate-500">
-                  {service.desc}
-                </div>
-              </div>
-            </div>
-          ))}
-          <div className="border-t border-slate-200"></div>
-
-          <button
-            onClick={() => setPage("work")}
-            className="md:hidden w-full mt-8 py-4 border border-slate-900 text-slate-900 font-bold uppercase tracking-widest text-xs rounded-full"
-          >
-            Voir tous les projets
-          </button>
-        </div>
-      </div>
-    </section>
+    <Marquee text="R&D • WEB3 • INNOVATION • FRANCE" />
   </div>
 );
 
@@ -406,38 +323,38 @@ const Work = () => (
       <div className="mb-12 md:mb-20">
         <h1 className="text-5xl md:text-9xl font-bold mb-4 md:mb-8">
           Projets <br />
-          <span className="font-serif italic text-blue-600">Sélectionnés</span>
+          <span className="font-serif italic text-blue-600">Réalisés</span>
         </h1>
         <p className="text-lg md:text-xl text-slate-500 max-w-2xl">
-          Une sélection de projets où la rigueur technique rencontre la
-          sensibilité du design français.
+          Sites sur mesure, MVPs et solutions Blockchain pour les entreprises
+          innovantes.
         </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-20 md:mb-32">
         {[
           {
-            title: "Velocité AI",
-            cat: "Plateforme SaaS",
+            title: "Marketplace NFT",
+            cat: "Web3 / Blockchain",
             color: "bg-emerald-100",
             year: "2024",
           },
           {
-            title: "Ledger X",
-            cat: "Web3 / Sécurité",
+            title: "SaaS R&D",
+            cat: "Outil Interne",
             color: "bg-slate-900",
             year: "2023",
             dark: true,
           },
           {
-            title: "Maison Blanc",
-            cat: "E-Commerce",
+            title: "E-Commerce Luxe",
+            cat: "Site Sur Mesure",
             color: "bg-slate-100",
             year: "2024",
           },
           {
-            title: "NeoBank Fr",
-            cat: "App Fintech",
+            title: "Fintech MVP",
+            cat: "App Bancaire",
             color: "bg-blue-600",
             year: "2023",
             dark: true,
@@ -447,7 +364,6 @@ const Work = () => (
             <div
               className={`aspect-[4/3] rounded-sm overflow-hidden relative ${project.color} mb-4 md:mb-6 transition-transform duration-500 md:hover:scale-[1.02]`}
             >
-              {/* Mock Content inside card */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <span
                   className={`text-2xl md:text-4xl font-bold ${
@@ -484,7 +400,6 @@ const Work = () => (
         ))}
       </div>
     </div>
-    <Marquee text="PARCOURIR TOUS LES PROJETS" />
   </div>
 );
 
@@ -509,10 +424,9 @@ const Funding = () => {
               .
             </h1>
             <p className="text-base md:text-lg text-slate-600 mb-8 md:mb-12 leading-relaxed">
-              La France offre parmi les meilleures incitations à l'innovation au
-              monde. En tant qu'agence française enregistrée, CocoricoLabs
-              génère la documentation nécessaire pour vous permettre de réclamer
-              ces remboursements.
+              Nos factures détaillées et notre accompagnement technique vous
+              permettent de justifier vos dépenses innovation auprès de vos
+              partenaires financiers.
             </p>
 
             <div className="space-y-6 md:space-y-8">
@@ -521,8 +435,7 @@ const Funding = () => {
                   Crédit Impôt Innovation (CII)
                 </h3>
                 <p className="text-slate-500 text-sm mb-4">
-                  Rembourse 20% des dépenses liées au prototypage et au design
-                  UX.
+                  Rembourse 20% des dépenses liées au prototypage.
                 </p>
                 <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
                   <div className="h-full w-[20%] bg-blue-500"></div>
@@ -534,7 +447,7 @@ const Funding = () => {
                 </h3>
                 <p className="text-slate-500 text-sm mb-4">
                   Rembourse 30% des dépenses de R&D pour résoudre des défis
-                  techniques complexes.
+                  techniques.
                 </p>
                 <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
                   <div className="h-full w-[30%] bg-red-500"></div>
@@ -584,11 +497,6 @@ const Funding = () => {
                 </div>
               </div>
             </div>
-
-            <div className="mt-6 md:mt-8 p-4 bg-white/5 rounded-lg text-xs text-slate-400 leading-relaxed">
-              *Estimations seulement. Les montants réels dépendent des dépenses
-              éligibles et de la validation administrative.
-            </div>
           </div>
         </div>
       </div>
@@ -606,65 +514,144 @@ const Studio = () => (
           style={{ animationDuration: "10s" }}
         />
       </div>
-      <h1 className="text-4xl md:text-8xl font-serif font-medium mb-10 md:mb-16 leading-tight">
-        "Nous parlons JavaScript. <br /> Nous parlons aussi{" "}
-        <span className="italic text-red-600">BPI</span>."
+      <h1 className="text-4xl md:text-7xl font-serif font-medium mb-16 leading-tight">
+        "Un partenariat qui valorise <br /> vos{" "}
+        <span className="italic text-red-600">investissements</span>."
       </h1>
     </div>
 
-    <div className="max-w-[800px] mx-auto text-lg md:text-2xl font-light leading-relaxed text-slate-800 space-y-8 md:space-y-12 mb-20 md:mb-32">
-      <p>
-        <span className="font-bold text-blue-600">CocoricoLabs</span> est né
-        d'un constat simple : l'innovation française est puissante, mais
-        administrativement complexe.
-      </p>
-      <p>
-        Les startups internationales envient nos crédits d'impôt, mais les
-        fondateurs locaux peinent à les réclamer. Nous comblons ce fossé. Nous
-        sommes une équipe d'ingénieurs seniors et d'experts administratifs
-        travaillant à l'unisson.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-base font-sans mt-8 md:mt-12 border-t border-slate-200 pt-8 md:pt-12">
-        <div>
-          <h4 className="font-bold uppercase tracking-widest mb-2">QG Paris</h4>
-          <p className="text-slate-500">
-            Station F<br />5 Parvis Alan Turing
-            <br />
-            75013 Paris
-          </p>
-        </div>
-        <div>
-          <h4 className="font-bold uppercase tracking-widest mb-2">Contact</h4>
-          <p className="text-slate-500">
-            bonjour@cocoricolabs.fr
-            <br />
-            +33 1 00 00 00 00
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-1 px-1">
+    <div className="max-w-[1400px] mx-auto grid md:grid-cols-3 gap-8 mb-32">
       {[
-        { label: "Ingénierie", val: "Senior Uniq." },
-        { label: "Lieu", val: "Paris, FR" },
-        { label: "Focus", val: "Qualité" },
-      ].map((stat, i) => (
+        {
+          icon: BadgeCheck,
+          title: "Livrables Conformes",
+          desc: "Nos rapports techniques et nos factures détaillées sont conçus pour répondre aux exigences des programmes d’accompagnement à l’innovation.",
+        },
+        {
+          icon: FileText,
+          title: "Spécialistes R&D",
+          desc: "Nous développons des MVPs et solutions Web3 pour des entreprises en phase de R&D, avec une documentation technique conforme.",
+        },
+        {
+          icon: TrendingUp,
+          title: "Partenaire de Croissance",
+          desc: "Nous accompagnons les startups et PME qui cherchent à structurer leurs dépenses innovation pour en tirer le meilleur parti.",
+        },
+      ].map((item, i) => (
         <div
           key={i}
-          className="bg-slate-50 p-8 md:p-12 text-center hover:bg-slate-900 hover:text-white transition-colors duration-500"
+          className="bg-slate-50 p-8 md:p-12 hover:bg-slate-900 hover:text-white transition-colors duration-500 group rounded-xl"
         >
-          <div className="text-xs font-bold uppercase tracking-widest mb-2 md:mb-4 opacity-50">
-            {stat.label}
+          <div className="mb-6 text-blue-600 group-hover:text-white transition-colors">
+            <item.icon size={48} />
           </div>
-          <div className="text-2xl md:text-3xl font-serif italic">
-            {stat.val}
-          </div>
+          <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+          <p className="text-slate-500 group-hover:text-slate-300 leading-relaxed">
+            {item.desc}
+          </p>
         </div>
       ))}
     </div>
   </div>
 );
+
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const faqs = [
+    {
+      q: "Quels types de projets accompagnez-vous ?",
+      a: "Nous accompagnons les entreprises dans le développement de sites web sur mesure, MVPs pour valider vos idées, solutions Web3 (smart contracts, dApps, NFTs) et outils internes pour optimiser vos processus R&D.",
+    },
+    {
+      q: "Pourquoi choisir CocoricoLabs ?",
+      a: "Expertise technique Web3/React, documentation complète (rapports, factures précises) pour faciliter votre gestion, et un accompagnement sur mesure adapté aux startups et PME innovantes.",
+    },
+    {
+      q: "Comment se déroule la collaboration ?",
+      a: "1. Échange initial sur vos besoins. 2. Proposition détaillée avec devis clair. 3. Développement en étroite collaboration. 4. Livraison avec code source, documentation et support.",
+    },
+    {
+      q: "Quels livrables recevrai-je ?",
+      a: "Vous recevrez le code source (droits inclus), une documentation technique complète (architecture, guides), des factures détaillées par phase, et un rapport de recette.",
+    },
+    {
+      q: "Vos factures sont-elles adaptées aux partenaires financiers ?",
+      a: "Oui ! Nos factures respectent les standards comptables français : description précise, ventilation des coûts par phase (conception, dév, tests), et mentions légales obligatoires.",
+    },
+    {
+      q: "Valorisez-vous nos investissements ?",
+      a: "Absolument. Nous vous aidons à structurer vos dépenses technologiques et à obtenir des livrables techniques répondant aux attentes des institutions (BPI, etc.).",
+    },
+    {
+      q: "Proposez-vous des solutions pour la R&D ?",
+      a: "Oui, nous sommes spécialisés dans l'accompagnement R&D : prototypes, solutions innovantes, et rédaction de documentations conformes.",
+    },
+    {
+      q: "Quels sont vos délais de livraison ?",
+      a: "Site vitrine : 1-3 semaines. MVP : 4-8 semaines. Solution Web3 : 6-9 semaines. Un calendrier précis est fourni à la signature.",
+    },
+    {
+      q: "Avantage d'une agence française ?",
+      a: "Équipe francophone réactive, livrables conformes aux standards français, et compréhension fine des enjeux de l'innovation en France.",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen pt-28 md:pt-32 px-6 md:px-12 bg-white animate-in slide-in-from-bottom-8 duration-700">
+      <div className="max-w-[1000px] mx-auto">
+        <h1 className="text-5xl md:text-8xl font-bold mb-16">
+          Vos Questions, <br />
+          <span className="font-serif italic text-blue-600">
+            Notre Expertise
+          </span>
+        </h1>
+
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div key={index} className="border-b border-slate-200">
+              <button
+                className="w-full py-8 flex justify-between items-center text-left hover:text-blue-600 transition-colors"
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              >
+                <span className="text-xl md:text-2xl font-bold pr-8">
+                  {faq.q}
+                </span>
+                <span className="shrink-0">
+                  {openIndex === index ? <Minus /> : <Plus />}
+                </span>
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  openIndex === index
+                    ? "max-h-96 opacity-100 mb-8"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <p className="text-lg text-slate-600 leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-20 p-8 bg-slate-50 rounded-xl text-center">
+          <h3 className="text-2xl font-bold mb-4">Une autre question ?</h3>
+          <p className="mb-8 text-slate-500">
+            Contactez-nous directement pour discuter de votre projet.
+          </p>
+          <a
+            href="mailto:hello@cocoricolabs.com"
+            className="inline-block px-8 py-3 bg-slate-900 text-white rounded-full font-bold hover:bg-blue-600 transition-colors"
+          >
+            hello@cocoricolabs.com
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Contact = () => (
   <div className="min-h-screen pt-32 md:pt-40 px-6 md:px-12 bg-slate-900 text-white animate-in zoom-in-95 duration-500">
@@ -673,7 +660,7 @@ const Contact = () => (
         Lancez-vous.
       </h1>
       <p className="text-lg md:text-xl text-slate-400 mb-10 md:mb-16">
-        Racontez-nous votre ambition. Nous construisons le reste.
+        Obtenez un devis détaillé pour votre projet Web3 dès aujourd’hui.
       </p>
 
       <form className="max-w-xl mx-auto space-y-6 md:space-y-8 text-left">
@@ -704,7 +691,7 @@ const Contact = () => (
           <textarea
             rows="3"
             className="w-full bg-transparent border-b border-slate-700 py-3 md:py-4 text-xl md:text-2xl focus:outline-none focus:border-blue-500 transition-colors"
-            placeholder="Je veux construire..."
+            placeholder="Objectifs, technologies, délais..."
           />
         </div>
 
@@ -713,7 +700,7 @@ const Contact = () => (
             type="button"
             className="w-full md:w-auto px-12 py-5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-all hover:scale-105 shadow-[0_0_30px_rgba(37,99,235,0.3)]"
           >
-            Envoyer la Demande
+            Envoyer la Demande (Réponse sous 48h)
           </button>
         </div>
       </form>
@@ -735,23 +722,21 @@ const App = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Reset scroll on page change
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsMenuOpen(false);
   }, [activePage]);
 
-  // Map English keys to French display names for navigation
   const navItems = [
     { id: "work", label: "Projets" },
     { id: "funding", label: "Financement" },
     { id: "studio", label: "Studio" },
+    { id: "faq", label: "FAQ" },
     { id: "contact", label: "Contact" },
   ];
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-slate-900 font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden cursor-auto md:cursor-none">
-      {/* --- GLOBAL STYLES --- */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Syne:wght@400;500;700;800&family=Manrope:wght@300;400;600&display=swap');
         
@@ -765,7 +750,6 @@ const App = () => {
         h1, h2, h3 { font-family: var(--font-display); }
         .font-serif { font-family: var(--font-serif); }
         
-        /* Cursor hidden only on desktop */
         @media (min-width: 768px) {
           .cursor-none { cursor: none; }
           a, button, input, textarea { cursor: none; }
@@ -805,17 +789,19 @@ const App = () => {
 
       {/* --- NAVIGATION --- */}
       <nav
-        className={`fixed top-0 w-full z-50 px-6 md:px-12 flex justify-between items-center transition-all duration-500 ${
-          isScrolled
+        className={`fixed top-0 w-full z-50 px-6 md:px-12 flex justify-between items-center transition-all duration-500 
+        ${
+          isScrolled && !isMenuOpen
             ? "py-4 bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200/50"
-            : "py-6 md:py-8 mix-blend-multiply bg-transparent"
-        }`}
+            : "py-6 md:py-8 bg-transparent"
+        }
+        ${!isMenuOpen && !isScrolled ? "mix-blend-multiply" : ""}
+      `}
       >
         <div
           className="flex items-center gap-3 cursor-pointer"
           onClick={() => setActivePage("home")}
         >
-          {/* LOGO IMAGE ADDED HERE */}
           <img
             src="cocoricolabs_logo_third.png"
             alt="CocoricoLabs"
@@ -835,7 +821,7 @@ const App = () => {
         </div>
 
         <div className="hidden md:flex gap-12 items-center">
-          {navItems.map((item) => (
+          {navItems.slice(0, 4).map((item) => (
             <button
               key={item.id}
               onClick={() => setActivePage(item.id)}
@@ -867,7 +853,7 @@ const App = () => {
         </button>
 
         {isMenuOpen && (
-          <div className="absolute top-0 left-0 w-full h-screen bg-[#FDFBF7] flex flex-col items-center justify-center gap-6 md:gap-8 z-40 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="fixed inset-0 bg-[#FDFBF7] flex flex-col items-center justify-center gap-6 md:gap-8 z-40 animate-in fade-in slide-in-from-top-4 duration-300">
             <button
               onClick={() => setActivePage("home")}
               className="text-3xl md:text-4xl font-serif italic hover:text-blue-600 transition-colors"
@@ -896,6 +882,7 @@ const App = () => {
         {activePage === "work" && <Work />}
         {activePage === "funding" && <Funding />}
         {activePage === "studio" && <Studio />}
+        {activePage === "faq" && <FAQ />}
         {activePage === "contact" && <Contact />}
       </main>
 
