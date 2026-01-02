@@ -882,60 +882,142 @@ const FAQ = () => {
   );
 };
 
-const Contact = () => (
-  <div className="min-h-screen pt-32 md:pt-40 px-6 md:px-12 bg-slate-900 text-white animate-in zoom-in-95 duration-500">
-    <div className="max-w-[1000px] mx-auto text-center">
-      <h1 className="text-5xl md:text-9xl font-bold mb-6 md:mb-8">
-        Lancez-vous.
-      </h1>
-      <p className="text-lg md:text-xl text-slate-400 mb-10 md:mb-16">
-        Obtenez un devis détaillé pour votre projet Web3 dès aujourd’hui.
-      </p>
+// --- UPDATED CONTACT COMPONENT WITH GOOGLE SHEETS INTEGRATION ---
 
-      <form className="max-w-xl mx-auto space-y-6 md:space-y-8 text-left">
-        <div className="group">
-          <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 group-focus-within:text-blue-500 transition-colors">
-            Nom
-          </label>
-          <input
-            type="text"
-            className="w-full bg-transparent border-b border-slate-700 py-3 md:py-4 text-xl md:text-2xl focus:outline-none focus:border-blue-500 transition-colors"
-            placeholder="Jean Dupont"
-          />
-        </div>
-        <div className="group">
-          <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 group-focus-within:text-blue-500 transition-colors">
-            Email
-          </label>
-          <input
-            type="email"
-            className="w-full bg-transparent border-b border-slate-700 py-3 md:py-4 text-xl md:text-2xl focus:outline-none focus:border-blue-500 transition-colors"
-            placeholder="jean@entreprise.com"
-          />
-        </div>
-        <div className="group">
-          <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 group-focus-within:text-blue-500 transition-colors">
-            Détails du Projet
-          </label>
-          <textarea
-            rows="3"
-            className="w-full bg-transparent border-b border-slate-700 py-3 md:py-4 text-xl md:text-2xl focus:outline-none focus:border-blue-500 transition-colors"
-            placeholder="Objectifs, technologies, délais..."
-          />
-        </div>
+const Contact = () => {
+  // 1. State for form data
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    details: "",
+  });
 
-        <div className="pt-8 text-center">
-          <button
-            type="button"
-            className="w-full md:w-auto px-12 py-5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-all hover:scale-105 shadow-[0_0_30px_rgba(37,99,235,0.3)]"
-          >
-            Envoyer la Demande (Réponse sous 48h)
-          </button>
-        </div>
-      </form>
+  // 2. State for submission status
+  const [status, setStatus] = useState(""); // success | error | loading
+
+  // 3. Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // 4. Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default page reload
+    setStatus("loading");
+
+    // ⚠️ REPLACE THIS WITH YOUR OWN GOOGLE APPS SCRIPT URL ⚠️
+    const GOOGLE_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbyYCFtz9lh86YHXByMXPDBTm8UYx1TmnXjuK4yHQjya_YbvkO2BC3JyBap9AWlAMGoq/exec";
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors", // 'no-cors' is required for Google Apps Script triggers
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Assuming success if no network error occurred
+      setStatus("success");
+      setFormData({ name: "", email: "", details: "" }); // Reset form
+    } catch (error) {
+      console.error("Error:", error);
+      setStatus("error");
+    }
+  };
+
+  return (
+    <div className="min-h-screen pt-32 md:pt-40 px-6 md:px-12 bg-slate-900 text-white animate-in zoom-in-95 duration-500">
+      <div className="max-w-[1000px] mx-auto text-center">
+        <h1 className="text-5xl md:text-9xl font-bold mb-6 md:mb-8">
+          Lancez-vous.
+        </h1>
+        <p className="text-lg md:text-xl text-slate-400 mb-10 md:mb-16">
+          Obtenez un devis détaillé pour votre projet Web3 dès aujourd’hui.
+        </p>
+
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-xl mx-auto space-y-6 md:space-y-8 text-left"
+        >
+          <div className="group">
+            <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 group-focus-within:text-blue-500 transition-colors">
+              Nom
+            </label>
+            <input
+              required
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              type="text"
+              className="w-full bg-transparent border-b border-slate-700 py-3 md:py-4 text-xl md:text-2xl focus:outline-none focus:border-blue-500 transition-colors"
+              placeholder="Jean Dupont"
+            />
+          </div>
+
+          <div className="group">
+            <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 group-focus-within:text-blue-500 transition-colors">
+              Email
+            </label>
+            <input
+              required
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              type="email"
+              className="w-full bg-transparent border-b border-slate-700 py-3 md:py-4 text-xl md:text-2xl focus:outline-none focus:border-blue-500 transition-colors"
+              placeholder="jean@entreprise.com"
+            />
+          </div>
+
+          <div className="group">
+            <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 group-focus-within:text-blue-500 transition-colors">
+              Détails du Projet
+            </label>
+            <textarea
+              required
+              name="details"
+              value={formData.details}
+              onChange={handleChange}
+              rows="3"
+              className="w-full bg-transparent border-b border-slate-700 py-3 md:py-4 text-xl md:text-2xl focus:outline-none focus:border-blue-500 transition-colors"
+              placeholder="Objectifs, technologies, délais..."
+            />
+          </div>
+
+          {/* Feedback Messages */}
+          {status === "success" && (
+            <p className="text-green-500 text-center font-bold animate-pulse">
+              Message envoyé avec succès !
+            </p>
+          )}
+          {status === "error" && (
+            <p className="text-red-500 text-center font-bold">
+              Une erreur est survenue. Veuillez réessayer.
+            </p>
+          )}
+
+          <div className="pt-8 text-center">
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className={`w-full md:w-auto px-12 py-5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-all hover:scale-105 shadow-[0_0_30px_rgba(37,99,235,0.3)] ${
+                status === "loading" ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              {status === "loading"
+                ? "Envoi en cours..."
+                : "Envoyer la Demande (Réponse sous 48h)"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // --- MAIN APP COMPONENT ---
 
